@@ -1,0 +1,15 @@
+.recipes-list{
+    /* background-color: red; */
+    width: 100%;
+}
+
+.recipes-list > *{
+    margin: 20px auto;
+}
+
+.no-recipes{
+    text-align: center;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 100px;
+}

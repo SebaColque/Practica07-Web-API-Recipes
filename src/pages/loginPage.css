@@ -1,0 +1,34 @@
+.login-page-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(170, 86, 86);
+}
+
+.login-register-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 500px;
+    font-size: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    border-radius: 40px;
+}
+
+
+/* CONTAINER NO ACTIVE */
+.login-register-container > .no-active{
+    cursor: pointer;
+    flex-shrink: 20;
+    writing-mode: vertical-lr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 3s ease-out;
+}

@@ -1,0 +1,39 @@
+.wave-deco{
+    width: 100%;
+    height: 200px;
+    /* background-color: blue; */
+}
+
+.wave-deco.bottom{
+    transform: rotate(180deg);
+}
+
+.wave-deco img{
+    width: 100%;
+    height: 100%;
+}
+
+.main-container{
+    padding: 80px 20px;
+    background-color: rgb(170, 86, 86);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.famous-recipes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.famous-recipes hr{
+    border: 1px solid rgb(105, 130, 105);
+    width: 90%;
+}

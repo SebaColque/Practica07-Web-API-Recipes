@@ -1,0 +1,12 @@
+body{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(241, 219, 191);
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}

@@ -1,0 +1,50 @@
+.register{
+    background-color: rgb(185, 155, 107);
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    box-shadow: -7px 0 20px rgba(0, 0, 0, 0.295);
+}
+
+.register form{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin: 30px auto;
+}
+
+.register label{
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.register input{
+    background-color: rgba(241, 219, 191, 0.2);
+    border: 2px solid rgb(241, 219, 191);
+    padding: 10px;
+    outline: none;
+    width: 50%;
+}
+
+.register button{
+    margin-top: 40px;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(241, 219, 191);
+    color: rgb(165, 132, 80);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.register button:hover{
+    background-color: rgb(170, 86, 86);
+    color: white;
+}

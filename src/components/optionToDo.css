@@ -1,0 +1,43 @@
+.option-to-do{
+    height: 350px;
+    max-width: 300px;
+    background-color: rgb(105, 130, 105);
+    text-align: center;
+    padding: 40px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 20px rgba(241, 219, 191, 0.5);
+    border-radius: 15px;
+}
+
+.option-to-do h3{
+    text-shadow: 3px 2px 5px rgba(241, 219, 191, 0.5);
+    padding: 5px 10px;
+    border-radius: 30px;
+}
+
+.link-to{
+    background-color: rgba(241, 219, 191, 0.8);
+    color: rgb(170, 86, 86);
+    padding: 5px 20px;
+    border-radius: 10px;
+    transition: 1s ease;
+    width: 25px;
+}
+
+.link-to:hover{
+    transition: 1s ease;
+    background-color: rgba(241, 219, 191, 1);
+    color: rgb(170, 86, 86);
+    padding: 5px 20px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.link-to span{
+    font-size: 1.5rem;
+}
