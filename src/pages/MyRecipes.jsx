@@ -40,35 +40,40 @@ const MyRecipes = () => {
 
     useEffect(() => {
         // console.log(recipes)
-
-        recipes.forEach(recipe => {
-            const url = `http://ec2-3-82-93-203.compute-1.amazonaws.com/api/recipe/recipes/${recipe.id}/`;
-            getRecipes(url, setFullRecipes, true)
-        })
+        if(recipes.length>=0){
+            recipes.forEach(recipe => {
+                const url = `http://ec2-3-82-93-203.compute-1.amazonaws.com/api/recipe/recipes/${recipe.id}/`;
+                getRecipes(url, setFullRecipes, true)
+            })
+        }
         
         setLoading(false);
     }, [recipes])
 
 
     useEffect(() => {
-        if(search) {
-            const { name, time, price } = search;
-            const filteredRecipes = fullRecipes.filter(recipe => {
-                if(name) return recipe.title.toLowerCase().includes(name.toLowerCase())
-                else return recipe
-            })
-            if(time){
-                if(time === 'lowToHigh') filteredRecipes.sort((a, b) => a.time_minutes - b.time_minutes);
-                else filteredRecipes.sort((a, b) => b.time_minutes - a.time_minutes);
+        if(fullRecipes.length>0){
+
+            if(search) {
+                const { name, time, price } = search;
+                const filteredRecipes = fullRecipes.filter(recipe => {
+                    if(name) return recipe.title.toLowerCase().includes(name.toLowerCase())
+                    else return recipe
+                })
+                if(time){
+                    if(time === 'lowToHigh') filteredRecipes.sort((a, b) => a.time_minutes - b.time_minutes);
+                    else filteredRecipes.sort((a, b) => b.time_minutes - a.time_minutes);
+                }
+                if(price){
+                    if(price === 'lowToHigh') filteredRecipes.sort((a, b) => a.price - b.price);
+                    else filteredRecipes.sort((a, b) => b.price - a.price);
+                }
+                
+                setFullRecipes(filteredRecipes);
+            } else{
+                setFullRecipes(recipes);
             }
-            if(price){
-                if(price === 'lowToHigh') filteredRecipes.sort((a, b) => a.price - b.price);
-                else filteredRecipes.sort((a, b) => b.price - a.price);
-            }
-            
-            setFullRecipes(filteredRecipes);
-        } else{
-            setFullRecipes(recipes);
+
         }
     }, [search])
 
@@ -88,7 +93,7 @@ const MyRecipes = () => {
         < SearchForm setSearch={setSearch} />
         <div className='recipes-list'>
             {/* {!loading && fullRecipes.length === 0 && < Loader />} */}
-            {!loading && fullRecipes.map(recipe => <Recipe key={recipe.id} ingredients={recipe.ingredients} price={recipe.price} time={recipe.time_minutes}
+            {!loading && fullRecipes.length>0 && fullRecipes.map(recipe => <Recipe key={recipe.id} ingredients={recipe.ingredients} price={recipe.price} time={recipe.time_minutes}
                                         title={recipe.title} description={recipe.description} image={recipe.image} id={recipe.id} setEdited={setEdited}/>)}
 
             {!loading && fullRecipes.length === 0 && <div className='no-recipes'><h2>No existen recetas...</h2></div>}
