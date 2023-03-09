@@ -4,7 +4,7 @@ import LanguageContext from '../context/languageContext';
 import UserContext from '../context/userContext';
 import './NavMenu.css';
 import esFlag from '../assets/es.png'
-import enFlag from '../assets/en.png'
+import enFlag from '../assets/en.webp'
 
 const NavMenu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
