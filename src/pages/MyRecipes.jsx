@@ -6,6 +6,7 @@ import Recipe from '../components/Recipe';
 import './myRecipes.css'
 import Loader from '../components/Loader';
 import SearchForm from '../components/SearchForm';
+import LanguageContext from '../context/languageContext';
 
 const MyRecipes = () => {
     const [recipes, setRecipes] = useState([]);
@@ -14,6 +15,7 @@ const MyRecipes = () => {
     const [search, setSearch] = useState(null);
     const [edited, setEdited] = useState(false)
 
+    const { texts } = useContext(LanguageContext)
     const { user } = useContext(UserContext);
     const TOKEN = user.token;
 
@@ -96,7 +98,7 @@ const MyRecipes = () => {
             {!loading && fullRecipes.length>0 && fullRecipes.map(recipe => <Recipe key={recipe.id} ingredients={recipe.ingredients} price={recipe.price} time={recipe.time_minutes}
                                         title={recipe.title} description={recipe.description} image={recipe.image} id={recipe.id} setEdited={setEdited}/>)}
 
-            {!loading && fullRecipes.length === 0 && <div className='no-recipes'><h2>No existen recetas...</h2></div>}
+            {!loading && fullRecipes.length === 0 && <div className='no-recipes'><h2>{texts.noRecipes}</h2></div>}
         </div>
     </>
   )

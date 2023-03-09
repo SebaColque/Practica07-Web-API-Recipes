@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import LanguageContext from '../context/languageContext';
 import { helpHtpp } from '../helpers/helpHttp';
 import Loader from './Loader';
 import { Message } from './Message';
@@ -16,6 +17,8 @@ const Register = ({handleChangeLoginRegister, loginDiv, registerDiv, activeRegis
   const [errorRegister, setErrorRegister] = useState(false);
   const [registered, setRegistered] = useState(false);
   const [messageError, setMessageError] = useState('');
+
+  const { texts } = useContext(LanguageContext);
 
   const handleChange = (e) => {
     setRegisterForm({
@@ -48,18 +51,25 @@ const handleRegister = (e) => {
                     setActiveRegister(!activeRegister);
                     loginDiv.current.classList.toggle('no-active');
                     registerDiv.current.classList.toggle('no-active');
-                }, 2000)
+                }, 1000)
             } else {
                 res.info.then(msg => {
                   console.log(msg);
                   for(let key in msg){
                     if(key === 'email'){
-                      const msj = msg[key][0] === 'Enter a valid email address.' ? 'Ingrese un correo válido' : 'El correo ya está registrado';
+                      // console.log(msg[key][0])
+                      // const msj = msg[key][0] === 'Enter a valid email address.' ? 'Ingrese un correo válido' : 'El correo ya está registrado';
+                      let msj;
+                      if(msg[key][0] === 'Enter a valid email address.'){
+                         msj = texts.invalidEmail
+                      } else if(msg[key][0] === 'user with this email already exists.'){
+                         msj = texts.emailAlreadyExists
+                      }
                       setMessageError('Email: ' + msj)
                       return;
                     } else{
                       const msj = 'La contraseña debe tener al menos 5 caracteres';
-                      setMessageError('Contraseña: '+ msj)
+                      setMessageError(`${texts.loginPassword}: `+ msj)
                     }
                   }
                 })
@@ -76,15 +86,15 @@ const handleRegister = (e) => {
       onClick={handleChangeLoginRegister}
       ref={registerDiv}
     >
-      <h1>Registrarse</h1>
+      <h1>{texts.registerButton}</h1>
       {activeRegister && (
         <form onSubmit={handleRegister}>
-          <label htmlFor="name">Nombre de Usuario</label>
+          <label htmlFor="name">{texts.loginUserName}</label>
           <input
             type="text"
             name="name"
             id="name"
-            placeholder="Nombre de usuario..."
+            placeholder={`${texts.loginUserName}...`}
             value={registerForm.name}
             required
             onChange={handleChange}
@@ -94,26 +104,26 @@ const handleRegister = (e) => {
             type="text"
             name="email"
             id="email"
-            placeholder="Correo... (Ej: xxxx@xxxx.xx)"
+            placeholder="Email... (Ej: xxxx@xxxx.xx)"
             value={registerForm.email}
             required
             onChange={handleChange}
           />
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password">{texts.loginPassword}</label>
           <input
             type="password"
             name="password"
             id="password"
-            placeholder="Contraseña... (Al menos 5 caracteres)"
+            placeholder={texts.passwordMinLength}
             value={registerForm.password}
             required
             onChange={handleChange}
           />
-          <button>Registrarse</button>
+          <button>{texts.registerButton}</button>
           {loading && <Loader />}
           {errorRegister && <Message description={messageError} />}
           {registered && (
-            <Message description={"Registrado con éxito"} error={false} />
+            <Message description={texts.successfullyRegistered} error={false} />
           )}
         </form>
       )}

@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
+import LanguageContext from '../context/languageContext';
 import './searchForm.css'
 
 const initialForm = {
@@ -10,6 +11,8 @@ const initialForm = {
 const SearchForm = ({setSearch}) => {
     const [form, setForm] = useState(initialForm);
 
+    const { texts } = useContext(LanguageContext)
+    
     const selectTime = useRef();
     const selectPrice = useRef();
 
@@ -45,31 +48,31 @@ const SearchForm = ({setSearch}) => {
     <div className='form-container'>
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="name">Receta:</label>
-                <input type="text" name='name' id='name' placeholder="Nombre... " value={form.name} onChange={handleChange}/>
+                <label htmlFor="name">{texts.labelRecipeName}</label>
+                <input type="text" name='name' id='name' placeholder={texts.inputRecipeName} value={form.name} onChange={handleChange}/>
             </div>
             
             <div>
-                <label htmlFor="time">Tiempo:</label>
+                <label htmlFor="time">{texts.labelRecipeTime}</label>
                 <select name="time" id="time" onChange={handleChange} ref={selectTime}>
                     <option value="">---</option>
-                    <option value="lowToHigh">Menor a mayor</option>
-                    <option value="highToLow">Mayor a menor</option>
+                    <option value="lowToHigh">{texts.selectLowToHigh}</option>
+                    <option value="highToLow">{texts.selectHighToLow}</option>
                 </select>
             </div>
 
             <div>
-                <label htmlFor="price">Precio:</label>
+                <label htmlFor="price">{texts.labelRecipePrice}</label>
                 <select name="price" id="price" onChange={handleChange} ref={selectPrice}>
                     <option value="">---</option>
-                    <option value="lowToHigh">Menor a mayor</option>
-                    <option value="highToLow">Mayor a menor</option>
+                    <option value="lowToHigh">{texts.selectLowToHigh}</option>
+                    <option value="highToLow">{texts.selectHighToLow}</option>
                 </select>
             </div>
             
             <div>
-                <button type="submit">Buscar</button>
-                <button type='reset' onClick={handleReset}>Limpiar</button>
+                <button type="submit">{texts.searchButton}</button>
+                <button type='reset' onClick={handleReset}>{texts.resetButton}</button>
             </div>
         </form>
     </div>

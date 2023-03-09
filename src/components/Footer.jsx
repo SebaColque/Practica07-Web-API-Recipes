@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import LanguageContext from '../context/languageContext'
 import './footer.css'
 
 export const Footer = () => {
+  const { texts } = useContext(LanguageContext)
+
   return (
       <footer>
-        <p>Página hecha por Sebastián Colque utilizando la 
+        <p>{texts.footerDescription1}
             <a href="http://ec2-3-82-93-203.compute-1.amazonaws.com/api/docs/" target="_blank" rel="noreferrer"
             style={{color:"rgb(185, 155, 107)", fontWeight:"bolder"}}> API </a> 
-            creada por Valentín Minolli</p>
+            {texts.footerDescription2}</p>
         <hr />
 
         <div className="redes">

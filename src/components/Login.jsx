@@ -5,6 +5,7 @@ import Loader from './Loader';
 import { Message } from './Message';
 import './login.css'
 import UserContext from '../context/userContext';
+import LanguageContext from '../context/languageContext';
 
 const initialLoginForm = {
     email: '',
@@ -17,6 +18,7 @@ const Login = ({handleChangeLoginRegister, loginDiv, activeLogin}) => {
     const [errorLogin, setErrorLogin] = useState(false);
 
     const { setUser } = useContext(UserContext);
+    const { texts } = useContext(LanguageContext);
 
     const navigate = useNavigate();
 
@@ -65,7 +67,7 @@ const Login = ({handleChangeLoginRegister, loginDiv, activeLogin}) => {
 
   return (
     <div className="login" onClick={handleChangeLoginRegister} ref={loginDiv}>
-      <h1>Iniciar Sesión</h1>
+      <h1>{texts.loginButton}</h1>
       {activeLogin && (
         <form onSubmit={handleLogin}>
           <label htmlFor="email">Email</label>
@@ -78,19 +80,19 @@ const Login = ({handleChangeLoginRegister, loginDiv, activeLogin}) => {
             required
             onChange={handleChange}
           />
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password">{texts.loginPassword}</label>
           <input
             type="password"
             name="password"
             id="password"
-            placeholder="Contraseña..."
+            placeholder={`${texts.loginPassword}...`}
             value={loginForm.password}
             required
             onChange={handleChange}
           />
-          <button>Iniciar Sesión</button>
+          <button>{texts.loginButton}</button>
           {loading && <Loader />}
-          {errorLogin && <Message description={"Usuario no váldio"} />}
+          {errorLogin && <Message description={texts.unsuccesLogin} />}
         </form>
       )}
     </div>

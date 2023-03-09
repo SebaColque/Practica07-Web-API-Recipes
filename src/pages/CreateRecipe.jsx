@@ -5,6 +5,7 @@ import './createRecipe.css'
 import UserContext from '../context/userContext'
 import { helpHtpp } from '../helpers/helpHttp'
 import bookGif from '../assets/book-recipe-unscreen.gif'
+import LanguageContext from '../context/languageContext'
 
 const initialForm = {
     title: '',
@@ -22,6 +23,8 @@ const initialForm = {
 const CreateRecipe = ({title, time, description, price, ingredients, id, setEdited}) => {
     // const initialFormData = new FormData();
     // const [formData, setFormData] = useState(initialFormData);
+
+    const { texts } = useContext(LanguageContext);
 
     const [form, setForm] = useState(initialForm);
     // console.log(id)
@@ -217,31 +220,31 @@ const CreateRecipe = ({title, time, description, price, ingredients, id, setEdit
         {!id && < NavMenu />}
         <form className='recipe-form' onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="title">Nombre:</label>
-                <input type="text" name='title' id='title' placeholder="Nombre de la receta" required onChange={handleChange}
+                <label htmlFor="title">{texts.createRecipeName}</label>
+                <input type="text" name='title' id='title' placeholder={texts.createRecipeNamePlaceholder} required onChange={handleChange}
                           defaultValue={title ? title : ''}/>
             </div>
             <hr />
             <div>
-                <label htmlFor="time_minutes">Timpo de preparación (minutos):</label>
+                <label htmlFor="time_minutes">{texts.createRecipeTime}</label>
                 <input type="number" name='time_minutes' id='time_minutes' min='0' max='9999' required onChange={handleChange}
-                        placeholder='Tiempo' defaultValue={time ? time : ''}/>
+                        placeholder={texts.createRecipeTimePlaceholder} defaultValue={time ? time : ''}/>
             </div>
             <hr />
             <div>
-                <label htmlFor="price">Precio (USD):</label>
+                <label htmlFor="price">{texts.createRecipePrice}</label>
                 <input type="number" name='price' id='price' min='0' max='999' required onChange={handleChange}
                         placeholder='USD' defaultValue={price ? price : ''}/>
             </div>
             <hr />
             <div>
-                <label htmlFor="description">Descripción</label>
-                <textarea maxLength='255' name="description" id="description" cols="80" rows="10" placeholder="Descripción de la receta" 
+                <label htmlFor="description">{texts.createRecipeDescription}</label>
+                <textarea maxLength='255' name="description" id="description" cols="80" rows="10" placeholder={texts.createRecipeDescriptionPlaceholder}
                 onChange={handleChange} defaultValue={description ? description : ''}></textarea>
             </div>
             <hr />
             <div className='ingredients-div'>
-                <label htmlFor="ingredients">Ingredientes</label>
+                <label htmlFor="ingredients">{texts.createRecipeIngredients}</label>
                 <div className='add-ingredient'>
                     <span className="material-symbols-outlined add" onClick={handleAddIngredient}>
                         add_circle
@@ -260,15 +263,15 @@ const CreateRecipe = ({title, time, description, price, ingredients, id, setEdit
             </div> */}
             <hr />
             <div>
-                {!id && <button type="submit" className='btn-submit'>Crear receta</button>}
-                {id && <button type="submit" className='btn-submit'>Editar receta</button>}
+                {!id && <button type="submit" className='btn-submit'>{texts.createRecipeButton}</button>}
+                {id && <button type="submit" className='btn-submit'>{texts.createEditRecipeButton}</button>}
             </div>
         </form>
         {sended && 
             <div className='sended' onClick={() => setSended(false)}>
                 <img src={bookGif} alt="enviado" />
-                {!id && <h3>Receta Creada!</h3>}
-                {id && <h3>Receta Editada!</h3>}
+                {!id && <h3>{texts.createRecipeSuccess}</h3>}
+                {id && <h3>{texts.editRecipeSuccess}</h3>}
             </div>
         }
         {/* < DragAndDrop setImage={setImage} titleDragDrop={titleDragDrop} setTitleDragDrop={setTitleDragDrop}/>

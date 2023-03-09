@@ -6,12 +6,14 @@ import UserContext from '../context/userContext';
 import CreateRecipe from '../pages/CreateRecipe';
 import Modal from './Modal'
 import { useModal } from '../hooks/useModal'
+import LanguageContext from '../context/languageContext';
 
 const Recipe = ({image=noImage, title, time, description, price, ingredients, id, setEdited}) => {
     const [isOpenRecipe, openModalRecipe, closeModalRecipe] = useModal(false);
     const [toEdit, setToEdit] = useState(false)
 
     const { user } = useContext(UserContext);
+    const { texts } = useContext(LanguageContext)
 
     const recipeDiv = useRef();
     const recipeHr = useRef();
@@ -67,8 +69,8 @@ const Recipe = ({image=noImage, title, time, description, price, ingredients, id
                 {id && 
                     <div>
                         {/* <button className='btn-view-recipe' id={id} onClick={openModalRecipe}>Ver receta</button> */}
-                        <button className='btn-recipe edit' id={id} onClick={handleEdit}>Editar receta</button>
-                        <button className='btn-recipe remove' id={id} onClick={handleRemove}>Eliminar receta</button>
+                        <button className='btn-recipe edit' id={id} onClick={handleEdit}>{texts.editRecipeButton}</button>
+                        <button className='btn-recipe remove' id={id} onClick={handleRemove}>{texts.deleteRecipeButton}</button>
                     </div>
                 }
             </div>
@@ -78,7 +80,7 @@ const Recipe = ({image=noImage, title, time, description, price, ingredients, id
                 <hr />
             </div>
             <div className='ingr'>
-                <h4>Ingredientes</h4>
+                <h4>{texts.recipeIngredients}</h4>
                 <ul>
                     {ingredients.map((ingredient, index) => (
                         <li key={index}>{ingredient.name}</li>

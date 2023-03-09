@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import wave2 from '../assets/wave-2.svg'
 import wave3 from '../assets/wave-3.svg'
 import './main.css'
 import OptionToDo from './OptionToDo'
 import Recipe from './Recipe'
 import imageFood1 from '../assets/image-food-1.jpg'
+import LanguageContext from '../context/languageContext'
 
 const Main = () => {
 
+  const { texts } = useContext(LanguageContext);
+
   const ingredientes = [
-    {name: 'papa'},
-    {name: 'carne'},
-    {name: 'verdura'},
-    {name: 'salsa'},
+    {name: 'dolore'},
+    {name: 'laboris'},
+    {name: 'pariatur'},
+    {name: 'mollit'},
   ]
 
   return (
@@ -22,11 +25,11 @@ const Main = () => {
         <img src={wave2} alt="wave deco" />
       </div>
       <div className="main-container">
-        < OptionToDo title={'Mis recetas'} description={'Lugar donde podes ver todas tus recetas guardadas, hacer búsqueda por filtros y más'} 
+        < OptionToDo title={texts.navMyRecipes} description={texts.mainMyRecipesDescription} 
             icon={'list'} link={'/my-recipes'} />
-        < OptionToDo title={'Crear Receta'} description={'Agregar una nueva receta a tu lista, indicando ingredientes, tiempo, precio, imagen...'} 
+        < OptionToDo title={texts.navCreateRecipe} description={texts.mainCreateRecipeDescription} 
             icon={'add_circle'} link={'/create-recipe'}/>
-        < OptionToDo title={'Editar receta'} description={'Edita la receta que eligas para poder cambiar cualquier item de la mísma'} 
+        < OptionToDo title={texts.createEditRecipeButton} description={texts.mainEditRecipeDescription} 
             icon={'edit'} link={'/my-recipes'} />
       </div>
       <div className="wave-deco bottom">
@@ -34,16 +37,16 @@ const Main = () => {
       </div>
 
       <div className="famous-recipes">
-        <h2>Algunas recetas populares...</h2>
-        < Recipe image={imageFood1} title={'Titulo de Prueba'} time={'45'} 
+        <h2>{texts.mainFamouseRecipes}</h2>
+        < Recipe image={imageFood1} title={'Lorem laboris dolore'} time={'45'} 
                   description={'Lorem laboris dolore laboris velit proident adipisicing sunt fugiat ipsum mollit dolor.Lorem laboris dolore laboris velit proident adipisicing sunt fugiat ipsum mollit dolor.Lorem laboris dolore laboris velit proident adipisicing sunt fugiat ipsum mollit dolor.Lorem laboris dolore laboris velit proident adipisicing sunt fugiat ipsum mollit dolor.'}
                   price={'450.00'}
                   ingredients={ingredientes}/>
-        < Recipe image={imageFood1} title={'Titulo de Prueba'} time={'45'} 
+        < Recipe image={imageFood1} title={'Lorem laboris dolore'} time={'45'} 
                   description={'Lorem laboris dolore laboris velit proident adipisicing sunt fugiat ipsum mollit dolor.'}
                   price={'450.00'}
                   ingredients={ingredientes}/>
-        < Recipe image={imageFood1} title={'Titulo de Prueba'} time={'45'} 
+        < Recipe image={imageFood1} title={'Lorem laboris dolore'} time={'45'} 
                   description={'Lorem laboris dolore laboris velit proident adipisicing sunt fugiat ipsum mollit dolor.'}
                   price={'450.00'}
                   ingredients={ingredientes}/>
