@@ -20,6 +20,8 @@ const MyRecipes = () => {
     const TOKEN = user.token;
 
     const getRecipes = async (url, set, add=false) => {
+        setLoading(true);
+
         const options = {
             method: 'GET',
             headers: {
@@ -31,17 +33,16 @@ const MyRecipes = () => {
         helpHtpp().get(url, options)
             .then(res => {
                 if(add) set(prev => [...prev, res])
-                else set(res)
+                else set(res);
+                setLoading(false);
             })
     }
     
     useEffect(() => {
-        setLoading(true);
         getRecipes('http://ec2-3-82-93-203.compute-1.amazonaws.com/api/recipe/recipes/', setRecipes)
     }, [])
 
     useEffect(() => {
-        // console.log(recipes)
         if(recipes.length>=0){
             recipes.forEach(recipe => {
                 const url = `http://ec2-3-82-93-203.compute-1.amazonaws.com/api/recipe/recipes/${recipe.id}/`;
@@ -49,7 +50,6 @@ const MyRecipes = () => {
             })
         }
         
-        setLoading(false);
     }, [recipes])
 
 
@@ -94,7 +94,7 @@ const MyRecipes = () => {
         < NavMenu />
         < SearchForm setSearch={setSearch} />
         <div className='recipes-list'>
-            {/* {!loading && fullRecipes.length === 0 && < Loader />} */}
+            {loading && fullRecipes.length === 0 && < Loader />}
             {!loading && fullRecipes.length>0 && fullRecipes.map(recipe => <Recipe key={recipe.id} ingredients={recipe.ingredients} price={recipe.price} time={recipe.time_minutes}
                                         title={recipe.title} description={recipe.description} image={recipe.image} id={recipe.id} setEdited={setEdited}/>)}
 

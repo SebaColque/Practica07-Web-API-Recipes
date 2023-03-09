@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import './recipe.css'
 import noImage from '../assets/no-image.jpg'
 import { helpHtpp } from '../helpers/helpHttp';
@@ -68,7 +68,6 @@ const Recipe = ({image=noImage, title, time, description, price, ingredients, id
                 </div>
                 {id && 
                     <div>
-                        {/* <button className='btn-view-recipe' id={id} onClick={openModalRecipe}>Ver receta</button> */}
                         <button className='btn-recipe edit' id={id} onClick={handleEdit}>{texts.editRecipeButton}</button>
                         <button className='btn-recipe remove' id={id} onClick={handleRemove}>{texts.deleteRecipeButton}</button>
                     </div>
@@ -97,49 +96,6 @@ const Recipe = ({image=noImage, title, time, description, price, ingredients, id
                                 ingredients={ingredients} id={id} setEdited={setEdited}/>
         </Modal>
     }
-
-    {/* < Modal isOpen={isOpenRecipe} closeModal={closeModalRecipe}>
-
-        <div className='modal-recipe'>
-            <div className="image">
-                <img src={image} alt="" />
-            </div>
-            <div className="info">
-                <div className="title">
-                    <h3>{title}</h3>
-                    <p>{time} min.</p>
-                    <span className="material-symbols-outlined">
-                        schedule
-                    </span>
-                </div>
-                <div className="description">
-                    <p>{description}</p>
-                </div>
-                <div className="price">
-                    <div className='price-div'>
-                        <p>{price}</p>
-                        <span className="material-symbols-outlined">
-                            attach_money
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div className="ingredients">
-                <div>
-                    <hr />
-                </div>
-                <div className='ingr'>
-                    <h4>Ingredientes</h4>
-                    <ul>
-                        {ingredients.map((ingredient, index) => (
-                            <li key={index}>{ingredient.name}</li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </Modal> */}
     </>
   )
 }

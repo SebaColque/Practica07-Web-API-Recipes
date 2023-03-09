@@ -118,7 +118,7 @@ const translations = {
         createRecipeButton: 'Create Recipe',
         createRecipeSuccess: 'Recipe Created!',
         createEditRecipeButton: 'Edit Recipe',
-        editRecipeSuccess: 'Edited Recipe!',
+        editRecipeSuccess: 'Recipe Edited!',
 
         // RECIPE
         recipeIngredients: 'Ingredients:',

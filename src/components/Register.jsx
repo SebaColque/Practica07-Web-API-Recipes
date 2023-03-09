@@ -25,9 +25,9 @@ const Register = ({handleChangeLoginRegister, loginDiv, registerDiv, activeRegis
         ...registerForm,
         [e.target.name]: e.target.value
     })
-}
+  }
 
-const handleRegister = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     setLoading(true);
     const options = {
@@ -57,8 +57,6 @@ const handleRegister = (e) => {
                   console.log(msg);
                   for(let key in msg){
                     if(key === 'email'){
-                      // console.log(msg[key][0])
-                      // const msj = msg[key][0] === 'Enter a valid email address.' ? 'Ingrese un correo válido' : 'El correo ya está registrado';
                       let msj;
                       if(msg[key][0] === 'Enter a valid email address.'){
                          msj = texts.invalidEmail

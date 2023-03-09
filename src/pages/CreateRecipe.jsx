@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import NavMenu from '../components/NavMenu'
-import DragAndDrop from '../components/DragAndDrop'
 import './createRecipe.css'
 import UserContext from '../context/userContext'
 import { helpHtpp } from '../helpers/helpHttp'
@@ -21,27 +20,21 @@ const initialForm = {
 
 
 const CreateRecipe = ({title, time, description, price, ingredients, id, setEdited}) => {
-    // const initialFormData = new FormData();
-    // const [formData, setFormData] = useState(initialFormData);
+    const [form, setForm] = useState(initialForm);
+    const [sended, setSended] = useState(false);
 
     const { texts } = useContext(LanguageContext);
+    const { user } = useContext(UserContext);
+    const TOKEN = user.token;
 
-    const [form, setForm] = useState(initialForm);
-    // console.log(id)
-    // if(id) console.log(id)
-    // console.log(ingredients)
-    // if(ingredients) console.log(ingredients)
-    
-    const [sended, setSended] = useState(false);
+    const ingredientList = useRef();
+
+
+    // CODIGO PARA CARGAR IMAGNES, PERO POR PROBLEMAS DE LA API EXTERNA NO FUNCIONA.** 
     // const [image, setImage] = useState(null);
     // const [imageRecipe, setImageRecipe] = useState(null);
     // const [uploadedImage, setUploadedImage] = useState(null);
     // const [titleDragDrop, setTitleDragDrop] = useState('');
-
-    const ingredientList = useRef();
-
-    const { user } = useContext(UserContext);
-    const TOKEN = user.token;
 
     // const uploadFile = (file) => {
     //     if(file.length >= 2){
@@ -145,7 +138,6 @@ const CreateRecipe = ({title, time, description, price, ingredients, id, setEdit
                 ...form,
                 ingredients
             }) 
-            // return;
         } else{
             setForm({
                 ...form,

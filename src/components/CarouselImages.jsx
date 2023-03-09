@@ -48,7 +48,7 @@ export default function Carousel({images}) {
       <CarouselImg
         // src={require(`assets/img/${selectedImage}`).default}
         src={selectedImage}
-        alt="Gentleman"
+        alt="Food Image"
         className={loaded ? "loaded" : ""}
         onLoad={() => setLoaded(true)}
       />

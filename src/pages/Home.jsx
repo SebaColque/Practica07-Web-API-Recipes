@@ -5,7 +5,6 @@ import Main from '../components/Main'
 import NavMenu from '../components/NavMenu'
 
 const Home = () => {
-  // window.location.reload();
 
   return (
     <div>
